@@ -1,0 +1,4 @@
+name = "detentiondefender"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+account_id = "bfb0df1756f540619e87ecedf87a5609"
