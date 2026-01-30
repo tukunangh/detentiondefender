@@ -41,7 +41,7 @@ Would this help? What's actually blocking you from getting paid?
 ---
 
 ## UTM Link
-`https://tukunangh.github.io/detentiondefender/?utm_source=facebook&utm_medium=organic&utm_campaign=dd_smoke`
+`https://detentiondefender.surge.sh/?utm_source=facebook&utm_medium=organic&utm_campaign=dd_smoke`
 
 ---
 

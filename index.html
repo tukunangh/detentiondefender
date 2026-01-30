@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DetentionDefender — Stop Losing Detention Pay</title>
     <meta name="description" content="GPS-verified timestamps. Bulletproof documentation. Get paid for every hour you wait at the dock.">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VW0YXQ75JQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-VW0YXQ75JQ');
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -442,12 +450,14 @@
             <h2>🔔 Get Early Access</h2>
             <p>Be first to know when DetentionDefender launches. No spam, just launch updates.</p>
             
-            <form class="signup-form" action="https://formsubmit.co/tukunangh@gmail.com" method="POST">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://detentiondefender.surge.sh?thanks=1">
+            <form class="signup-form" action="https://formspree.io/f/xwvbnnjk" method="POST">
                 <input type="email" name="email" placeholder="Your email" required>
                 <input type="text" name="role" placeholder="Owner-operator, fleet size, etc. (optional)">
-                <input type="hidden" name="_subject" value="DetentionDefender Early Access Signup">
+                <input type="hidden" name="form_location" value="top">
+                <input type="hidden" name="utm_source" value="">
+                <input type="hidden" name="utm_medium" value="">
+                <input type="hidden" name="utm_campaign" value="">
+                <input type="hidden" name="utm_content" value="">
                 <button type="submit">Notify Me at Launch →</button>
             </form>
             
@@ -607,11 +617,13 @@
             <p>Join the waitlist. Be first to document smarter.</p>
             
             <div class="form-container" id="form-bottom">
-                <form class="signup-form" action="https://formsubmit.co/tukunangh@gmail.com" method="POST">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="https://detentiondefender.surge.sh?thanks=1">
+                <form class="signup-form" action="https://formspree.io/f/xwvbnnjk" method="POST">
                     <input type="email" name="email" placeholder="Your email" required>
-                    <input type="hidden" name="_subject" value="DetentionDefender Early Access Signup (Bottom)">
+                    <input type="hidden" name="form_location" value="bottom">
+                    <input type="hidden" name="utm_source" value="">
+                    <input type="hidden" name="utm_medium" value="">
+                    <input type="hidden" name="utm_campaign" value="">
+                    <input type="hidden" name="utm_content" value="">
                     <button type="submit">Get Early Access →</button>
                 </form>
                 
@@ -631,30 +643,40 @@
     </footer>
     
     <script>
-        // Handle ?thanks=1 redirect from formsubmit
-        if (window.location.search.includes('thanks=1')) {
-            document.querySelectorAll('.form-container').forEach(c => {
-                c.classList.add('submitted');
+        // Parse UTM parameters from URL
+        (function() {
+            var params = new URLSearchParams(window.location.search);
+            var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+            utmKeys.forEach(function(key) {
+                var val = params.get(key) || '';
+                document.querySelectorAll('input[name="' + key + '"]').forEach(function(input) {
+                    input.value = val;
+                });
             });
-        }
-        
-        // Handle form submission
+        })();
+
+        // Handle form submission with GA4 generate_lead event
         document.querySelectorAll('.signup-form').forEach(form => {
             form.addEventListener('submit', function(e) {
-                const container = this.closest('.form-container');
-                
-                // Submit via fetch to avoid redirect
                 e.preventDefault();
+                const container = this.closest('.form-container');
                 const formData = new FormData(this);
-                
+
                 fetch(this.action, {
                     method: 'POST',
                     body: formData,
                     headers: { 'Accept': 'application/json' }
                 }).then(response => {
                     if (response.ok) {
+                        // Fire GA4 generate_lead conversion event
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'generate_lead', {
+                                event_category: 'signup',
+                                event_label: formData.get('form_location') || 'unknown',
+                                value: 1
+                            });
+                        }
                         container.classList.add('submitted');
-                        // Also show success on other form
                         document.querySelectorAll('.form-container').forEach(c => {
                             c.classList.add('submitted');
                         });

@@ -23,7 +23,7 @@ Planning a free tier (3 claims/month) and Pro ($9.99/mo unlimited). One recovere
 
 **Honest question:** Would this actually help? Or is there something else that's the real blocker to getting detention paid?
 
-If interested, early access signup here: https://tukunangh.github.io/detentiondefender/?utm_source=reddit&utm_medium=organic&utm_campaign=dd_smoke
+If interested, early access signup here: https://detentiondefender.surge.sh/?utm_source=reddit&utm_medium=organic&utm_campaign=dd_smoke
 
 ---
 
@@ -41,4 +41,4 @@ If interested, early access signup here: https://tukunangh.github.io/detentionde
 ---
 
 ## UTM Link
-`https://tukunangh.github.io/detentiondefender/?utm_source=reddit&utm_medium=organic&utm_campaign=dd_smoke`
+`https://detentiondefender.surge.sh/?utm_source=reddit&utm_medium=organic&utm_campaign=dd_smoke`
