@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DetentionDefender — Stop Losing Detention Pay</title>
+    <meta name="description" content="GPS-verified timestamps. Bulletproof documentation. Get paid for every hour you wait at the dock.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a1a2e;
+            background: #fafafa;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 60px 20px 80px;
+            text-align: center;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,193,7,0.2);
+            color: #ffc107;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(28px, 6vw, 48px);
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+        
+        .hero h1 span {
+            color: #ffc107;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 500px;
+            margin: 0 auto 32px;
+        }
+        
+        .stat-banner {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        
+        .stat-banner strong {
+            font-size: 32px;
+            color: #ff6b6b;
+            display: block;
+        }
+        
+        /* Form */
+        .signup-section {
+            background: white;
+            margin-top: -40px;
+            border-radius: 16px;
+            padding: 32px 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .signup-section h2 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        
+        .signup-section p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .signup-form input {
+            padding: 16px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            transition: border-color 0.2s;
+        }
+        
+        .signup-form input:focus {
+            outline: none;
+            border-color: #1a1a2e;
+        }
+        
+        .signup-form button {
+            background: #ffc107;
+            color: #1a1a2e;
+            font-size: 18px;
+            font-weight: 700;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .signup-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255,193,7,0.4);
+        }
+        
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 16px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Pain Section */
+        .pain-section {
+            padding: 60px 20px;
+        }
+        
+        .pain-section h2 {
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .pain-grid {
+            display: grid;
+            gap: 24px;
+        }
+        
+        .pain-card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            border-left: 4px solid #ff6b6b;
+        }
+        
+        .pain-card h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .pain-card p {
+            color: #666;
+            font-size: 15px;
+        }
+        
+        /* How It Works */
+        .how-section {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 20px;
+        }
+        
+        .how-section h2 {
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .steps {
+            display: grid;
+            gap: 24px;
+        }
+        
+        .step {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        
+        .step-num {
+            background: #ffc107;
+            color: #1a1a2e;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+        
+        .step-content p {
+            opacity: 0.8;
+            font-size: 14px;
+        }
+        
+        /* Social Proof */
+        .proof-section {
+            padding: 60px 20px;
+        }
+        
+        .proof-section h2 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .quote-card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .quote-card p {
+            font-style: italic;
+            color: #444;
+            margin-bottom: 12px;
+        }
+        
+        .quote-source {
+            font-size: 13px;
+            color: #888;
+        }
+        
+        /* Pricing */
+        .pricing-section {
+            background: #f0f4f8;
+            padding: 60px 20px;
+        }
+        
+        .pricing-section h2 {
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .pricing-cards {
+            display: grid;
+            gap: 20px;
+        }
+        
+        @media (min-width: 600px) {
+            .pricing-cards {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .pricing-card {
+            background: white;
+            padding: 32px 24px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .pricing-card.featured {
+            border: 3px solid #ffc107;
+            position: relative;
+        }
+        
+        .pricing-card.featured::before {
+            content: 'BEST VALUE';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffc107;
+            color: #1a1a2e;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        
+        .pricing-card h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        
+        .price {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1a1a2e;
+        }
+        
+        .price span {
+            font-size: 16px;
+            font-weight: 400;
+            color: #666;
+        }
+        
+        .pricing-card ul {
+            list-style: none;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .pricing-card li {
+            padding: 8px 0;
+            font-size: 14px;
+            color: #444;
+        }
+        
+        .pricing-card li::before {
+            content: '✓';
+            color: #22c55e;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+        
+        .roi-callout {
+            background: #fff3cd;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 24px;
+            text-align: center;
+        }
+        
+        .roi-callout strong {
+            color: #1a1a2e;
+        }
+        
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .final-cta h2 {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+        
+        .final-cta p {
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+        
+        .final-cta .signup-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .final-cta input {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.2);
+            color: white;
+        }
+        
+        .final-cta input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+        
+        /* Footer */
+        footer {
+            background: #0d0d1a;
+            color: rgba(255,255,255,0.6);
+            padding: 24px 20px;
+            text-align: center;
+            font-size: 13px;
+        }
+        
+        /* Success State */
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        .form-container.submitted .signup-form {
+            display: none;
+        }
+        
+        .form-container.submitted .success-message {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <span class="hero-badge">🚛 For Owner-Operators & Small Carriers</span>
+            <h1>Waited 6 Hours.<br><span>Got Paid for Zero?</span></h1>
+            <p>Stop losing detention pay to documentation gaps. One tap creates GPS-verified, bulletproof records.</p>
+            
+            <div class="stat-banner">
+                <strong>$11.5 Billion</strong>
+                Lost to unpaid detention every year. You don't have to be part of that statistic.
+            </div>
+        </div>
+    </section>
+    
+    <!-- Signup Form -->
+    <section class="container">
+        <div class="signup-section form-container" id="form-top">
+            <h2>🔔 Get Early Access</h2>
+            <p>Be first to know when DetentionDefender launches. No spam, just launch updates.</p>
+            
+            <form class="signup-form" action="https://formspree.io/f/xwpoppbe" method="POST">
+                <input type="email" name="email" placeholder="Your email" required>
+                <input type="text" name="role" placeholder="Owner-operator, fleet size, etc. (optional)">
+                <input type="hidden" name="_subject" value="DetentionDefender Early Access Signup">
+                <button type="submit">Notify Me at Launch →</button>
+            </form>
+            
+            <div class="success-message">
+                <strong>🎉 You're on the list!</strong><br>
+                We'll email you the moment DetentionDefender is ready.
+            </div>
+            
+            <div class="trust-badges">
+                <span>✓ No spam</span>
+                <span>✓ Unsubscribe anytime</span>
+                <span>✓ Free tier available</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pain Section -->
+    <section class="pain-section">
+        <div class="container">
+            <h2>😤 Sound Familiar?</h2>
+            
+            <div class="pain-grid">
+                <div class="pain-card">
+                    <h3>📝 "Insufficient Documentation"</h3>
+                    <p>You waited 5 hours. Submitted your claim. Denied because you couldn't prove the exact arrival time. Your word against theirs — you lose.</p>
+                </div>
+                
+                <div class="pain-card">
+                    <h3>⏱️ Napkin Timestamps Don't Work</h3>
+                    <p>Scribbled arrival time on a receipt? Good luck getting the broker to accept that. They need proof, not your handwriting.</p>
+                </div>
+                
+                <div class="pain-card">
+                    <h3>💸 $3,000-5,000 Lost Per Year</h3>
+                    <p>The average driver loses thousands annually to uncollected detention. Less than half of claims actually get paid.</p>
+                </div>
+                
+                <div class="pain-card">
+                    <h3>🏭 Big Shippers Get Away With It</h3>
+                    <p>"All-day windows" at warehouses like Tyson mean you wait for hours while they pocket the savings. Time to fight back.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works -->
+    <section class="how-section">
+        <div class="container">
+            <h2>📱 How DetentionDefender Works</h2>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <h3>Tap "Arrived"</h3>
+                        <p>GPS logs your exact location and timestamp. No typing. No mistakes. Proof is automatic.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <h3>Wait (We're Tracking)</h3>
+                        <p>App runs in background. At the 2-hour mark, it prompts you to snap a photo of the dock or BOL.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <h3>Tap "Leaving"</h3>
+                        <p>Captures departure time. Total wait time calculated automatically. No math required.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <div class="step-content">
+                        <h3>Get Your Invoice</h3>
+                        <p>Auto-generates PDF with GPS coordinates, timestamps, photos, and detention amount at YOUR rate. Bulletproof.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-num">5</div>
+                    <div class="step-content">
+                        <h3>Send & Get Paid</h3>
+                        <p>Email directly to broker. No excuses. No disputes. Just documentation they can't deny.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Social Proof -->
+    <section class="proof-section">
+        <div class="container">
+            <h2>💬 What Truckers Are Saying</h2>
+            
+            <div class="quote-card">
+                <p>"An app that keeps track of appointment times, detention pay, and takes the driver off when the load is delivered would be pretty awesome."</p>
+                <span class="quote-source">— r/Truckers</span>
+            </div>
+            
+            <div class="quote-card">
+                <p>"I've been arguing with my dispatcher for two weeks about a load. They're denying detention based on the 30 minutes I was late to appointment."</p>
+                <span class="quote-source">— r/Truckers</span>
+            </div>
+            
+            <div class="quote-card">
+                <p>"The big shippers like Tyson get away with all-day windows and can't get their shit together."</p>
+                <span class="quote-source">— r/Truckers (68 upvotes, 55 comments)</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing -->
+    <section class="pricing-section">
+        <div class="container">
+            <h2>💰 Simple Pricing for Working Drivers</h2>
+            
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="price">$0</div>
+                    <ul>
+                        <li>3 detention claims/month</li>
+                        <li>Basic PDF generation</li>
+                        <li>Email delivery</li>
+                        <li>GPS-verified timestamps</li>
+                    </ul>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3>Pro</h3>
+                    <div class="price">$9.99<span>/month</span></div>
+                    <ul>
+                        <li>Unlimited claims</li>
+                        <li>Photo attachments</li>
+                        <li>Claim history & analytics</li>
+                        <li>Priority support</li>
+                        <li>Works offline</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="roi-callout">
+                <strong>💡 One recovered detention claim (~$100-300) pays for a FULL YEAR of Pro.</strong>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>🚀 Stop Leaving Money at the Dock</h2>
+            <p>Join the waitlist. Be first to document smarter.</p>
+            
+            <div class="form-container" id="form-bottom">
+                <form class="signup-form" action="https://formspree.io/f/xwpoppbe" method="POST">
+                    <input type="email" name="email" placeholder="Your email" required>
+                    <input type="hidden" name="_subject" value="DetentionDefender Early Access Signup (Bottom)">
+                    <button type="submit">Get Early Access →</button>
+                </form>
+                
+                <div class="success-message">
+                    <strong>🎉 You're on the list!</strong><br>
+                    We'll email you the moment DetentionDefender is ready.
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2026 DetentionDefender · Built for truckers, by people who get it.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Handle form submission
+        document.querySelectorAll('.signup-form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                const container = this.closest('.form-container');
+                
+                // Submit via fetch to avoid redirect
+                e.preventDefault();
+                const formData = new FormData(this);
+                
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                }).then(response => {
+                    if (response.ok) {
+                        container.classList.add('submitted');
+                        // Also show success on other form
+                        document.querySelectorAll('.form-container').forEach(c => {
+                            c.classList.add('submitted');
+                        });
+                    }
+                }).catch(error => {
+                    alert('Something went wrong. Please try again.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
