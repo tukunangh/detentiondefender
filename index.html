@@ -458,6 +458,7 @@
                 <input type="hidden" name="utm_medium" value="">
                 <input type="hidden" name="utm_campaign" value="">
                 <input type="hidden" name="utm_content" value="">
+                <input type="hidden" name="utm_term" value="">
                 <button type="submit">Notify Me at Launch →</button>
             </form>
             
@@ -624,6 +625,7 @@
                     <input type="hidden" name="utm_medium" value="">
                     <input type="hidden" name="utm_campaign" value="">
                     <input type="hidden" name="utm_content" value="">
+                    <input type="hidden" name="utm_term" value="">
                     <button type="submit">Get Early Access →</button>
                 </form>
                 
@@ -643,16 +645,28 @@
     </footer>
     
     <script>
-        // Parse UTM parameters from URL
+        // Parse UTM parameters and gclid from URL
         (function() {
             var params = new URLSearchParams(window.location.search);
-            var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+            var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
             utmKeys.forEach(function(key) {
                 var val = params.get(key) || '';
                 document.querySelectorAll('input[name="' + key + '"]').forEach(function(input) {
                     input.value = val;
                 });
             });
+            
+            // Capture Google Ads click ID for conversion tracking
+            var gclid = params.get('gclid');
+            if (gclid) {
+                document.querySelectorAll('.signup-form').forEach(function(form) {
+                    var input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = 'gclid';
+                    input.value = gclid;
+                    form.appendChild(input);
+                });
+            }
         })();
 
         // Handle form submission with GA4 generate_lead event
