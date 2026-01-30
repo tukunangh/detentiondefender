@@ -442,7 +442,9 @@
             <h2>🔔 Get Early Access</h2>
             <p>Be first to know when DetentionDefender launches. No spam, just launch updates.</p>
             
-            <form class="signup-form" action="https://formspree.io/f/xwpoppbe" method="POST">
+            <form class="signup-form" action="https://formsubmit.co/tukunangh@gmail.com" method="POST">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://detentiondefender.surge.sh?thanks=1">
                 <input type="email" name="email" placeholder="Your email" required>
                 <input type="text" name="role" placeholder="Owner-operator, fleet size, etc. (optional)">
                 <input type="hidden" name="_subject" value="DetentionDefender Early Access Signup">
@@ -605,7 +607,9 @@
             <p>Join the waitlist. Be first to document smarter.</p>
             
             <div class="form-container" id="form-bottom">
-                <form class="signup-form" action="https://formspree.io/f/xwpoppbe" method="POST">
+                <form class="signup-form" action="https://formsubmit.co/tukunangh@gmail.com" method="POST">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://detentiondefender.surge.sh?thanks=1">
                     <input type="email" name="email" placeholder="Your email" required>
                     <input type="hidden" name="_subject" value="DetentionDefender Early Access Signup (Bottom)">
                     <button type="submit">Get Early Access →</button>
@@ -627,6 +631,13 @@
     </footer>
     
     <script>
+        // Handle ?thanks=1 redirect from formsubmit
+        if (window.location.search.includes('thanks=1')) {
+            document.querySelectorAll('.form-container').forEach(c => {
+                c.classList.add('submitted');
+            });
+        }
+        
         // Handle form submission
         document.querySelectorAll('.signup-form').forEach(form => {
             form.addEventListener('submit', function(e) {
